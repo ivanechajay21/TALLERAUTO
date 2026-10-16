@@ -46,3 +46,6 @@ backend/uploads/
 # Sistema operativo
 .DS_Store
 Thumbs.db
+
+# Reportes PDF generados por el módulo de Reportes
+frontend/reporte-*.pdf
