@@ -8,6 +8,20 @@ Aplicación **full-stack** para digitalizar la operación de un taller mecánico
 
 ---
 
+## Equipo
+
+| # | Integrante | Usuario de GitHub | Rol en el proyecto |
+|---|---|---|---|
+| 1 | _Nombre y apellido_ | [@usuario1](https://github.com/usuario1) | Líder de proyecto · Backend y seguridad |
+| 2 | _Nombre y apellido_ | [@usuario2](https://github.com/usuario2) | Backend · Servicios y API REST |
+| 3 | _Nombre y apellido_ | [@usuario3](https://github.com/usuario3) | Frontend · Interfaz y experiencia de usuario |
+| 4 | _Nombre y apellido_ | [@usuario4](https://github.com/usuario4) | QA · Pruebas, CI y documentación |
+| 5 | _Nombre y apellido_ | [@usuario5](https://github.com/usuario5) | DevOps · Docker, base de datos y despliegue |
+
+> ✏️ **Pendiente para la entrega:** reemplazar los nombres y usuarios de ejemplo por los reales. Los roles son una propuesta; ajústenlos según el trabajo de cada integrante.
+
+---
+
 ## Características
 
 | Módulo | Descripción |
@@ -171,6 +185,102 @@ TALLERAUTO/
 ├── docs/                    # Documentación técnica
 ├── docker-compose.yml
 └── .env.example
+```
+
+---
+
+## Flujo de trabajo con Git (equipo de 5)
+
+> Guía completa en [`CONTRIBUTING.md`](./CONTRIBUTING.md). Plantilla de PR en [`.github/pull_request_template.md`](./.github/pull_request_template.md).
+
+### Reglas de oro
+
+1. **`main` es intocable**: solo código estable y probado. **Nadie hace push directo**.
+2. Cada funcionalidad o corrección se desarrolla en **su propia rama**.
+3. Todo cambio entra por **Pull Request** con **al menos 1 revisión** de otro integrante.
+4. Commits **pequeños, frecuentes y descriptivos**.
+5. Antes de subir cambios: `git pull --rebase origin main`.
+6. **Nunca** subir `.env`, contraseñas, tokens ni `node_modules/`.
+
+### 1) Clonar el repositorio (una sola vez)
+
+```bash
+git clone https://github.com/ivanechajay21/TALLERAUTO.git
+cd TALLERAUTO
+git config user.name "Tu Nombre"
+git config user.email "tu@correo.com"
+```
+
+### 2) Crear la rama de trabajo
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b feature/login-jwt
+```
+
+| Prefijo | Uso | Ejemplo |
+|---|---|---|
+| `feature/` | Nueva funcionalidad | `feature/reportes-pdf` |
+| `fix/` | Corrección de error | `fix/stock-negativo` |
+| `docs/` | Documentación | `docs/manual-usuario` |
+| `test/` | Pruebas | `test/ordenes-service` |
+| `refactor/` | Refactorización | `refactor/reporte-service` |
+
+### 3) Guardar cambios (commits frecuentes)
+
+```bash
+git add .
+git commit -m "feat: agregar exportación de reportes a PDF"
+```
+
+| Tipo | Cuándo usarlo |
+|---|---|
+| `feat:` | Nueva funcionalidad |
+| `fix:` | Corrección de un error |
+| `docs:` | Documentación |
+| `test:` | Pruebas |
+| `refactor:` | Reestructuración sin cambiar comportamiento |
+| `chore:` | Configuración, dependencias, mantenimiento |
+
+**Mal:** `git commit -m "avances"` · `git commit -m "cambios"` · `git commit -m "subida"`
+**Bien:** `git commit -m "fix: validar stock antes de confirmar una salida"`
+
+### 4) Subir la rama y abrir el Pull Request
+
+```bash
+git push -u origin feature/login-jwt
+```
+
+En GitHub: **Compare & pull request** → describir el cambio → asignar revisor → esperar aprobación y CI en verde.
+
+### 5) Mantener la rama actualizada
+
+```bash
+git fetch origin
+git rebase origin/main
+# resolver conflictos si aparecen
+git push --force-with-lease
+```
+
+### 6) Después del merge
+
+```bash
+git checkout main
+git pull origin main
+git branch -d feature/login-jwt
+```
+
+### 7) Rutina diaria recomendada
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b feature/mi-tarea
+# ... trabajar ...
+git add .
+git commit -m "feat: descripción concreta del cambio"
+git push -u origin feature/mi-tarea
 ```
 
 ---
